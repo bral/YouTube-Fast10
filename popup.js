@@ -8,6 +8,8 @@
  *
  * @type {string}
  */
+var VIDEO = 'cooking';
+
 var QUERY = 'kittens';
 
 var kittenGenerator = {
@@ -20,6 +22,10 @@ var kittenGenerator = {
    * @type {string}
    * @private
    */
+  searchOnYouTube: 'https://gdata.youtube.com/feeds/api/videos?' +
+      'q=' + encodeURIComponent(VIDEO) + '&' +
+      'max-results=5',
+
   searchOnFlickr_: 'https://secure.flickr.com/services/rest/?' +
       'method=flickr.photos.search&' +
       'api_key=90485e931f687a9b9c2a66bf58a3861a&' +
@@ -39,6 +45,13 @@ var kittenGenerator = {
     var req = new XMLHttpRequest();
     req.open("GET", this.searchOnFlickr_, true);
     req.onload = this.showPhotos_.bind(this);
+    req.send(null);
+  },
+
+  requestVideos: function() {
+    var req = new XMLHttpRequest();
+    req.open("GET", this.searchOnYouTube, true);
+    req.onload = this.showSearchResults.bind(this);
     req.send(null);
   },
 

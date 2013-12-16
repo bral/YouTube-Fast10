@@ -11,5 +11,10 @@
   },
   "permissions": [
     "https://secure.flickr.com/"
-  ]
+  ],
+
+  "background": {
+    "scripts": ["popup.js"],
+    "persistent": false
+  }
 }
