@@ -48,15 +48,17 @@
  * @type {string}
  */
 var VIDEO;
+var startIndex = 1;
 
 // var QUERY = 'kittens';
 
 var videoGenerator = {
 
-  searchOnYouTube: function(vid){
+  searchOnYouTube: function(vid, startIndex){
     return 'https://gdata.youtube.com/feeds/api/videos?' +
-      'q=' + encodeURIComponent(vid) + '&' +
-      'max-results=5'
+      'q=' + encodeURIComponent(vid) +
+      '&start-index=' + encodeURIComponent(startIndex) + '&max-results=5'
+
   },
 
   // searchOnFlickr_: 'https://secure.flickr.com/services/rest/?' +
@@ -81,10 +83,10 @@ var videoGenerator = {
   //   req.send(null);
   // },
 
-  requestVideos: function(vid) {
+  requestVideos: function(vid, startIndex) {
     console.log('requestVideos ln83', vid);
     var req = new XMLHttpRequest();
-    req.open("GET", this.searchOnYouTube(vid), true);
+    req.open("GET", this.searchOnYouTube(vid, startIndex), true);
     req.onload = this.showSearchResults.bind(this);
     req.send(null);
     // $.ajax({
@@ -156,8 +158,18 @@ $(function(){
     $('input').val('');
     $('.show').html('')
     console.log(VIDEO);
-    videoGenerator.requestVideos(VIDEO);
+    videoGenerator.requestVideos(VIDEO, startIndex);
   });
   // kittenGenerator.requestKittens();
   // videoGenerator.requestVideos();
 })
+
+  // function reportclick(info,tab){
+
+  //   console.log("item " + info.menuItemId + " was clicked");
+  // }
+
+  // var item2 = chrome.contextMenus.create({"title":"Do Some YouTube Research","id":"item2","onclick": reportclick,"contexts":["selection"]  },function (){
+  //   // Do what all you need here when created
+  //   console.log("Context Menu 2 Created");
+  // });
