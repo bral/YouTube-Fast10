@@ -8,19 +8,11 @@
   "browser_action": {
     "default_icon": "icon.png",
     "default_popup": "popup.html"
-  },
-  "permissions": [
-    "https://secure.flickr.com/",
-    "https://gdata.youtube.com/feeds/api/videos"
-  ],
+  }
 
-  "background": {
-    "scripts": ["popup.js"],
-    "persistent": false
-  },
+  // "permissions": [
+  //   "https://secure.flickr.com/",
+  //   "https://gdata.youtube.com/feeds/api/videos"
+  // ],
 
-  "content_scripts": [ {
-    "js": [ "jquery-2.0.2.min.js", "popup.js" ],
-    "matches": [ "http://*/*", "https://*/*"]
-  }]
 }

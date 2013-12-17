@@ -92,6 +92,13 @@ var kittenGenerator = {
     req.open("GET", this.searchOnYouTube, true);
     req.onload = this.showSearchResults.bind(this);
     req.send(null);
+    // $.ajax({
+    //   url: this.searchOnYouTube,
+    //   type: 'GET',
+    //   success: function(data){
+    //     return this.showSearchResults.bind(this);
+    //   }
+    // })
   },
 
   /**
@@ -105,8 +112,10 @@ var kittenGenerator = {
   showSearchResults: function(e){
     var result = e.target.responseXML.querySelectorAll('entry');
     for(var i = 0; i < result.length; i++){
+      var $link = $(result[i].querySelector('title')).text();
+      console.log(result[i]);
       var $title = $(result[i].querySelector('title')).text();
-      $('body').prepend('<div></div>').text($title);
+      $('body').append('<div><a href='+ $link + '>' + $title + '</a><div>');
     }
     console.log(result);
   },
