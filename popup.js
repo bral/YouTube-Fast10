@@ -47,20 +47,12 @@ function xmlToJson(xml) {
  *
  * @type {string}
  */
-var VIDEO = 'cooking';
+var VIDEO = 'R Kelly';
 
 var QUERY = 'kittens';
 
-var kittenGenerator = {
-  /**
-   * Flickr URL that will give us lots and lots of whatever we're looking for.
-   *
-   * See http://www.flickr.com/services/api/flickr.photos.search.html for
-   * details about the construction of this URL.
-   *
-   * @type {string}
-   * @private
-   */
+var videoGenerator = {
+
   searchOnYouTube: 'https://gdata.youtube.com/feeds/api/videos?' +
       'q=' + encodeURIComponent(VIDEO) + '&' +
       'max-results=5',
@@ -112,10 +104,12 @@ var kittenGenerator = {
   showSearchResults: function(e){
     var result = e.target.responseXML.querySelectorAll('entry');
     for(var i = 0; i < result.length; i++){
-      var $link = $(result[i].querySelector('title')).text();
-      console.log(result[i]);
+      var $link = $(result[i].querySelector('id')).text();
+      var string = JSON.stringify($link);
+      var link = 'http://youtube.com/watch?v=' + string.slice(-12,-1);
+      console.log(link);
       var $title = $(result[i].querySelector('title')).text();
-      $('body').append('<div><a href='+ $link + '>' + $title + '</a><div>');
+      $('body').append('<div><a href='+ link + '>' + $title + '</a><div>');
     }
     console.log(result);
   },
@@ -154,6 +148,6 @@ var kittenGenerator = {
 };
 
 $(function(){
-  kittenGenerator.requestKittens();
-  kittenGenerator.requestVideos();
+  // kittenGenerator.requestKittens();
+  videoGenerator.requestVideos();
 })
