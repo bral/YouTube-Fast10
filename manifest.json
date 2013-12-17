@@ -10,11 +10,17 @@
     "default_popup": "popup.html"
   },
   "permissions": [
-    "https://secure.flickr.com/"
+    "https://secure.flickr.com/",
+    "https://gdata.youtube.com/feeds/api/videos"
   ],
 
   "background": {
     "scripts": ["popup.js"],
     "persistent": false
-  }
+  },
+
+  "content_scripts": [ {
+    "js": [ "jquery-2.0.2.min.js", "popup.js" ],
+    "matches": [ "http://*/*", "https://*/*"]
+  }]
 }
