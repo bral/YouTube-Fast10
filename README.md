@@ -1,5 +1,5 @@
-YouTube-Fast10
-==============
+YouTube-Fast10 - Chrome Extension
+=================================
 
 Version: 0.1,
 
