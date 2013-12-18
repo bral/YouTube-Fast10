@@ -40,7 +40,8 @@ $(function(){
    chrome.tabs.getSelected(null, function(tab) {
     chrome.tabs.sendRequest(tab.id, {method: "getSelection"}, function(response) {
       VIDEO = response.data;
-      videoGenerator.requestVideos(VIDEO);
+      $('.search').text(VIDEO);
+      videoGenerator.requestVideos(VIDEO)
       // content = document.getElementById('.show');
       // content.appendChild(document.createTextNode(response.data))
     });
@@ -54,6 +55,7 @@ $(function(){
   $('form').submit(function(event){
     event.preventDefault();
     VIDEO = $('input').val();
+    $('.search').text(VIDEO)
     $('input').val('');
     $('.show').html('')
     console.log(VIDEO);
