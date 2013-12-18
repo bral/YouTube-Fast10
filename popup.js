@@ -1,5 +1,7 @@
+// var saywhat = function(){
+//   alert(chrome.extension.getSelection());
+// }
 var VIDEO;
-var startIndex = 1;
 
 // var QUERY = 'kittens';
 
@@ -8,14 +10,14 @@ var videoGenerator = {
   searchOnYouTube: function(vid, startIndex){
     return 'https://gdata.youtube.com/feeds/api/videos?' +
       'q=' + encodeURIComponent(vid) +
-      '&max-results=5'
+      '&max-results=10'
 
   },
 
-  requestVideos: function(vid, startIndex) {
+  requestVideos: function(vid) {
     console.log('requestVideos ln83', vid);
     var req = new XMLHttpRequest();
-    req.open("GET", this.searchOnYouTube(vid, startIndex), true);
+    req.open("GET", this.searchOnYouTube(vid), true);
     req.onload = this.showSearchResults.bind(this);
     req.send(null);
   },
@@ -35,13 +37,27 @@ var videoGenerator = {
 
 $(function(){
 
+   chrome.tabs.getSelected(null, function(tab) {
+    chrome.tabs.sendRequest(tab.id, {method: "getSelection"}, function(response) {
+      VIDEO = response.data;
+      videoGenerator.requestVideos(VIDEO);
+      // content = document.getElementById('.show');
+      // content.appendChild(document.createTextNode(response.data))
+    });
+  });
+
+  // chrome.contextMenus.create({title: "Test %s menu item",
+  //                             contexts:["selection"],
+  //                             onclick: function(info, tab){ sendSearch(info.selectionText); }
+  // });
+
   $('form').submit(function(event){
     event.preventDefault();
     VIDEO = $('input').val();
     $('input').val('');
     $('.show').html('')
     console.log(VIDEO);
-    videoGenerator.requestVideos(VIDEO, startIndex);
+    videoGenerator.requestVideos(VIDEO);
   });
 
 })

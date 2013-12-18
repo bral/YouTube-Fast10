@@ -1,23 +1,24 @@
 {
   "manifest_version": 2,
 
-  "name": "One-click Kittens",
-  "description": "This extension demonstrates a 'browser action' with kittens.",
-  // "permissions": ["contextMenus"],
-  "version": "1.0",
+  "name": "YouTube Researcher",
+  "description": "Quickly search YouTube for information",
+  "version": "0.1",
+
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["contentscript.js", "jquery-2.0.3.js"]
+  }],
 
   "browser_action": {
     "default_icon": "icon.png",
     "default_popup": "popup.html"
-  }
+  },
 
-  // "background": {
-  //   "scipts": ["popup.js"]
-  // }
+  "background": {
+    "scipts": ["backgroundscript.js"]
+  },
 
-  // "permissions": [
-  //   "https://secure.flickr.com/",
-  //   "https://gdata.youtube.com/feeds/api/videos"
-  // ],
+  "permissions": ["<all_urls>", "contextMenus"]
 
 }
