@@ -1,9 +1,4 @@
-// var saywhat = function(){
-//   alert(chrome.extension.getSelection());
-// }
 var VIDEO;
-
-// var QUERY = 'kittens';
 
 var videoGenerator = {
 
@@ -15,7 +10,6 @@ var videoGenerator = {
   },
 
   requestVideos: function(vid) {
-    console.log('requestVideos ln83', vid);
     var req = new XMLHttpRequest();
     req.open("GET", this.searchOnYouTube(vid), true);
     req.onload = this.showSearchResults.bind(this);
@@ -58,7 +52,6 @@ $(function(){
     $('.search').text(VIDEO)
     $('input').val('');
     $('.show').html('')
-    console.log(VIDEO);
     videoGenerator.requestVideos(VIDEO);
   });
 

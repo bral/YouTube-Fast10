@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "YouTube Researcher",
-  "description": "Quickly search YouTube for information",
+  "name": "YouTube Fast10 ",
+  "description": "Quickly search YouTube for videos",
   "version": "0.1",
 
   "content_scripts": [{
