@@ -3,7 +3,7 @@
 
   "name": "YouTube Fast10 ",
   "description": "Quickly search YouTube for videos",
-  "version": "0.1",
+  "version": "0.2",
 
   "content_scripts": [{
     "matches": ["<all_urls>"],
